@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 // Unmodified copy of problems/p01-ballistic/public/engine/trig.hpp from
-// meow-ai-arena-problem-bank (p01-ballistic v2.4.3). Copyright 2026 Aesolumitria-Lab.
+// Aesolumitria-ai-arena (p01-ballistic v2.4.3). Copyright 2026 Aesolumitria-Lab.
 //
 // P01 BALLISTIC · 定点三角表（Q16.16，181 项）
 //

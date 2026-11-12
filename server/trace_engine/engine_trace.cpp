@@ -2,7 +2,7 @@
 //
 // engine_trace.cpp — MODIFIED COPY of the P01 BALLISTIC reference engine.
 //
-//   Upstream : meow-ai-arena-problem-bank, problems/p01-ballistic/public/engine/engine.cpp
+//   Upstream : Aesolumitria-ai-arena, problems/p01-ballistic/public/engine/engine.cpp
 //              p01-ballistic v2.4.3, sha256 d864692e4c9ab0b641d9518693c9dc301ff8c214c0c3d0c41fbb4b330e932671
 //   Copyright 2026 Aesolumitria-Lab. Licensed under the Apache License, Version 2.0
 //   (see LICENSE and NOTICE at the repository root).

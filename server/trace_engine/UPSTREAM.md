@@ -1,7 +1,7 @@
 # 引擎拷贝的来源与改动
 
 `engine_trace.cpp` 和 `trig.hpp` 来自
-meow-ai-arena-problem-bank
+Aesolumitria-ai-arena
 的 `problems/p01-ballistic/public/engine/`（Apache-2.0，Copyright 2026 Aesolumitria-Lab）。
 
 | 文件 | 上游文件 | 上游版本 | 上游 sha256 | 状态 |
