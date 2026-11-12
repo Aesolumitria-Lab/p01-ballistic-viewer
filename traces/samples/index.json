@@ -1,0 +1,25 @@
+{
+ "schema": "p01viz-samples/1",
+ "count": 1,
+ "samples": [
+  {
+   "id": "demo-4seat",
+   "file": "/traces/samples/demo-4seat.json",
+   "label": "4 席样例 · TIDE 三档 + SPAMMER",
+   "description": "公开图 public4-01；SPAMMER 循环火箭/手雷/钻头，覆盖弹射与挖地",
+   "map": "public4-01",
+   "seed": 1,
+   "bots": [
+    "tide_hard",
+    "tide_normal",
+    "spammer",
+    "tide_easy"
+   ],
+   "rounds": 23,
+   "winner": 0,
+   "reason": "ELIMINATION",
+   "state_hash": "1892508ebaaf8830",
+   "bytes": 1349400
+  }
+ ]
+}

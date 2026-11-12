@@ -1,0 +1,26 @@
+p01-ballistic-viewer
+Copyright 2026 Aesolumitria-Lab
+
+This product is licensed under the Apache License, Version 2.0.
+See LICENSE for the full license text.
+
+This product includes software derived from meow-ai-arena-problem-bank
+(Copyright 2026 Aesolumitria-Lab, Apache License 2.0):
+
+- server/trace_engine/engine_trace.cpp is a modified copy of
+  problems/p01-ballistic/public/engine/engine.cpp (p01-ballistic v2.4.3).
+  It adds a side-channel event log (TRACE / TRACECLOSE) for the viewer and
+  does not change simulation, hashing or fault rules.
+- server/trace_engine/trig.hpp is an unmodified copy of
+  problems/p01-ballistic/public/engine/trig.hpp.
+
+See server/trace_engine/UPSTREAM.md for versions, hashes and the change list.
+
+The sample trace under traces/samples/ embeds the grid of one public map
+(public4-01) from the same problem package and records a match between that
+package's public TIDE baseline bots and this repository's demo bot.
+
+Not included in this repository: the P01 problem package itself (maps,
+judge, baseline and challenge bot binaries) and any contestant or
+model-generated bot submissions. Obtain the package separately; it remains
+under its own license and notices.

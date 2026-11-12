@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P01 BALLISTIC · 像素观战器</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2307101c'/%3E%3Crect x='4' y='4' width='8' height='8' fill='%2335e0d0'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/base.css">
+</head>
+<body data-screen="boot" data-ui="1">
+
+<!-- ============ 播放态 ============ -->
+<div id="app">
+
+  <!-- 顶栏：左=核心控制条 / 右=数据读数(视觉层填充 #hud-top-info) -->
+  <header id="hud-top" class="hud">
+    <div id="core-controls" class="core-controls"></div>
+    <div id="hud-top-info" class="hud-top-info"></div>
+  </header>
+
+  <div id="main">
+    <!-- 舞台：逻辑分辨率 960×540，CSS 放大 -->
+    <div id="stage">
+      <div id="stage-frame">
+        <canvas id="scene" width="960" height="540" aria-label="P01 对局舞台"></canvas>
+        <div id="hud-banner" class="hud"></div>
+        <div id="hud-result" class="hud" hidden></div>
+        <div id="core-result-bar" class="core-result-bar" hidden></div>
+        <div id="debug-panel" class="hud" hidden></div>
+      </div>
+    </div>
+
+    <!-- 四席卡片：0/1 左列，3/2 右列（视觉层按 data-seat 定位，见 base.css） -->
+    <div id="hud-seats" class="hud"></div>
+
+    <!-- 事件流：左列下缘 -->
+    <div id="hud-feed" class="hud"></div>
+  </div>
+
+  <!-- 时间轴：核心提供可拖拽轨道 -->
+  <footer id="hud-timeline" class="hud"></footer>
+</div>
+
+<!-- ============ 设置页 ============ -->
+<div id="boot" class="boot">
+  <div class="boot-card">
+    <div class="boot-head">
+      <div class="boot-logo">P01 <span>//</span> BALLISTIC</div>
+      <div class="boot-sub">4-SEAT WATCHER · 像素炮弹观战器</div>
+    </div>
+
+    <div class="boot-grid">
+      <label class="boot-field">
+        <span class="boot-label">MAP</span>
+        <select id="boot-map"></select>
+      </label>
+      <label class="boot-field">
+        <span class="boot-label">SEED</span>
+        <input id="boot-seed" type="number" value="1" min="0" max="999999" step="1">
+      </label>
+    </div>
+
+    <div class="boot-seats">
+      <label class="boot-field"><span class="boot-label">SEAT 1</span><select id="boot-bot-0"></select></label>
+      <label class="boot-field"><span class="boot-label">SEAT 2</span><select id="boot-bot-1"></select></label>
+      <label class="boot-field"><span class="boot-label">SEAT 3</span><select id="boot-bot-2"></select></label>
+      <label class="boot-field"><span class="boot-label">SEAT 4</span><select id="boot-bot-3"></select></label>
+    </div>
+
+    <div class="boot-actions">
+      <button id="boot-start" class="btn btn-primary" type="button">START MATCH</button>
+      <button id="boot-random" class="btn" type="button">RANDOM</button>
+      <button id="boot-help" class="btn btn-ghost" type="button">KEYS</button>
+    </div>
+
+    <div class="boot-samples">
+      <div class="boot-section-title">样例对局 · SAMPLE TRACES</div>
+      <div id="boot-sample-list" class="sample-list"></div>
+    </div>
+
+    <div id="boot-status" class="boot-status" role="status"></div>
+
+    <pre id="boot-keys" class="boot-keys" hidden>
+SPACE  播放/暂停          LEFT / RIGHT  逐帧 (SHIFT ×10)
+[ / ]  减速 / 加速        D             调试叠加
+U      隐藏 UI            F             全屏
+M      静音               R             重开
+, / .  上一/下一关键事件   ESC           返回设置
+    </pre>
+  </div>
+</div>
+
+<!-- 共享契约必须先于所有模块加载 -->
+<script src="js/shared/contracts.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

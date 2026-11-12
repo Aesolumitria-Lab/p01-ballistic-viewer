@@ -1,0 +1,105 @@
+/* P01 · deep-sea dusk, hard edges, all assets generated locally. */
+:root { color-scheme: dark; --p01-ink: #eaf6ff; --p01-dim: #93aec2; --p01-gold: #ffd166; }
+body { font-variant-numeric: tabular-nums; }
+body::after { opacity: .24 !important; }
+body[data-scanlines="0"]::after { display: none; }
+body[data-ui="0"] *, body[data-remotion="1"] * { animation: none !important; transition: none !important; }
+#app #hud-top { border-bottom: 2px solid #29465a; box-shadow: 0 3px 0 #02080e; }
+#app #stage-frame { border-color: #426275; box-shadow: 0 0 0 1px #02080e, 5px 5px 0 #02080e; }
+#app #hud-timeline { border-top: 2px solid #29465a; }
+#app .visual-readout { display: flex; align-items: center; justify-content: flex-end; gap: 14px; min-width: 0; font: 11px "Courier New", monospace; letter-spacing: .04em; }
+.visual-map { color: #93aec2; max-width: 155px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.visual-round { color: #eaf6ff; white-space: nowrap; }
+.visual-wind { color: #ffd166; white-space: nowrap; }
+.visual-water { color: #a8f3ff; white-space: nowrap; }
+.wind-meter { display: inline-flex; gap: 2px; align-items: center; height: 18px; padding: 3px; border-bottom: 1px solid #426275; }
+.wind-meter i { display: block; width: 2px; height: 6px; background: #29465a; }
+.wind-meter i:nth-child(11) { height: 12px; background: #73909d; }
+.wind-meter i.is-current { height: 14px; background: #ffd166; box-shadow: 0 -3px 0 #ffd166; }
+#app .seat-card { border-top-color: #355064; background: #0b1826; padding: 12px 10px; margin-bottom: 10px; }
+#app .seat-card.is-act { border-color: var(--seat-color); box-shadow: inset 0 0 0 1px #142e3c, 3px 3px 0 #02080e; background: #112936; }
+#app .seat-head { padding-bottom: 8px; border-bottom: 1px solid #233e50; margin-bottom: 9px; }
+#app .seat-name { font-size: 12px; }
+#app .seat-chip { background: none; color: var(--seat-color); width: 18px; height: 15px; box-shadow: none; font-size: 14px; }
+#app .seat-act { color: #07101c; background: var(--seat-color); letter-spacing: .08em; }
+#app .seat-act[hidden] { display: none; }
+#app .seat-worms { gap: 8px; }
+#app .seat-worm .bar { height: 8px; }
+#app .seat-worm .bar::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(to right, transparent 0 calc(25% - 1px), #07101c calc(25% - 1px) 25%); }
+#app .seat-worm .bar > i { transition: none; }
+.visual-arsenal { display: flex; gap: 5px; align-items: center; margin-top: 10px; color: #93aec2; }
+.weapon-icon { display: inline-block; width: 12px; height: 10px; position: relative; image-rendering: pixelated; }
+.weapon-1 { background: #d6e2dc; clip-path: polygon(0 30%, 70% 30%, 70% 0, 100% 50%, 70% 100%, 70% 70%, 0 70%); }
+.weapon-2 { background: #91b260; clip-path: polygon(30% 0, 70% 0, 70% 20%, 90% 40%, 90% 80%, 70% 100%, 20% 100%, 0 80%, 0 40%, 30% 20%); }
+.weapon-3 { background: repeating-linear-gradient(135deg, #a8f3ff 0 2px, #44566b 2px 4px); clip-path: polygon(0 0, 100% 50%, 0 100%); }
+#app .seat-foot { padding-top: 9px; margin-top: 10px; font-size: 10px; }
+#app #hud-feed { mask-image: none; -webkit-mask-image: none; max-height: 180px; }
+.visual-feed { display: grid; gap: 6px; }
+#app .feed-row { font-size: 10px; padding: 5px 4px; background: #0b1826; }
+#app .feed-row > span { overflow: hidden; text-overflow: ellipsis; }
+#app #hud-banner { padding-top: 4%; }
+#app .banner-box { background: #081522eb; padding: 8px 20px; box-shadow: 3px 3px 0 #02080e; animation: none; }
+#app .banner-box[hidden] { display: none; }
+#app .banner-main { font-size: clamp(14px, 2vw, 27px); letter-spacing: .18em; }
+#app .banner-sub { font-size: 10px; letter-spacing: .1em; }
+#app #hud-result { background: #040b13e8; }
+#app .result-title { font-size: clamp(18px, 2.4vw, 36px); }
+.visual-result-table { border-collapse: collapse; width: min(620px, 94%); margin: 14px 0; font-size: clamp(9px, 1vw, 13px); background: #0b1826; }
+.visual-result-table th { color: #93aec2; font-size: .8em; letter-spacing: .06em; font-weight: normal; }
+.visual-result-table td, .visual-result-table th { padding: 10px 7px; border: 1px solid #29465a; }
+#app button, #boot button { border-radius: 0; box-shadow: 2px 2px 0 #02080e; }
+#app button:hover, #boot button:hover { border-color: #93aec2; }
+#app button:focus-visible, #boot button:focus-visible { outline: 2px solid #a8f3ff; outline-offset: 2px; }
+#app button:active, #boot button:active { box-shadow: none; }
+#app .tl-head { box-shadow: 2px 0 0 #000; }
+#app .tl-mark.t-water { border-radius: 0; clip-path: polygon(0 50%, 25% 0, 50% 50%, 75% 0, 100% 50%, 100% 100%, 0 100%); }
+#boot .boot-card { border-top: 3px solid #ffd166; background: #091724; box-shadow: 8px 8px 0 #02080e; }
+#boot .boot-logo::before { content: '[ '; color: #35e0d0; }
+#boot .boot-logo::after { content: ' ]'; color: #35e0d0; }
+#boot .sample-btn { border-left: 3px solid #35e0d0; }
+#boot .boot-label { color: #a8c2d1; }
+@media (min-width: 1600px) {
+  #app .seat-name { font-size: 14px; }
+  #app .seat-worm { font-size: 12px; }
+  #app .seat-worm .ammo { font-size: 11px; }
+  #app .seat-foot, #app .feed-row { font-size: 12px; }
+}
+/* Reserve real layout space for compact cards rather than overlaying the scene. */
+@media (max-width: 1180px) {
+  #app #main { display: grid; grid-template-rows: auto minmax(0, 1fr); padding: 6px 8px; }
+  #app #hud-seats { position: static; grid-row: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 0; }
+  #app #stage { grid-row: 2; }
+  #app .visual-arsenal { display: none; }
+  #app .seat-card { padding: 6px; margin-bottom: 6px; }
+  #app .seat-head { padding-bottom: 0; margin-bottom: 0; border: 0; }
+  #app .seat-foot { padding-top: 5px; margin-top: 5px; }
+  #app .visual-map, #app .wind-meter { display: none; }
+  #app .visual-readout { gap: 8px; font-size: 10px; }
+}
+@media (max-width: 720px) {
+  #app #hud-seats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+  #app .seat-card { margin: 0; padding: 4px; }
+  #app .seat-foot { display: none; }
+  #app .seat-name { font-size: 10px; }
+  #app .seat-chip { font-size: 10px; height: 12px; }
+  #app .visual-reference, #app .visual-water { display: none; }
+  #app #hud-top { flex-wrap: wrap; align-content: center; }
+  #app .visual-readout { gap: 5px; font-size: 9px; }
+  #app .result-sub { font-size: 9px; }
+  .visual-result-table td, .visual-result-table th { padding: 5px 3px; }
+}
+body[data-ui="0"] #app #main { display: flex; padding: 0; }
+body[data-ui="0"] #app #stage-frame { border: 0; box-shadow: none; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* 1366/1440 笔记本：压缩控制条，优先保留读数与核心按钮。 */
+@media (max-width: 1500px) {
+  #app #hud-top { gap: 6px; padding: 0 8px; }
+  #app #hud-top .core-controls { gap: 4px; }
+  #app #hud-top .core-controls button { padding: 4px 6px; font-size: 9px; letter-spacing: .03em; }
+  #app #hud-top .p01-brand { font-size: 10px; }
+  #app #hud-top-info { gap: 8px; font-size: 10px; }
+  #app .visual-map, #app .wind-meter { display: none; }
+  #app .visual-reference { padding: 2px 5px; font-size: 9px; }
+  #app .core-controls .ctl-hide-sm { display: none; }
+}

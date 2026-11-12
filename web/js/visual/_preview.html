@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P01 · 视觉层自测</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:#07101c;color:#eaf6ff;font:12px "Courier New",monospace}body{display:grid;grid-template-rows:auto minmax(0,1fr)}header{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px;border-bottom:2px solid #29465a}button,select{font:inherit;background:#12263a;color:#eaf6ff;border:1px solid #426275;padding:6px;cursor:pointer}button:hover{border-color:#ffd166}iframe{width:100%;height:100%;border:0}output{color:#a8f3ff;white-space:pre-wrap}a{color:#ffd166}
+</style>
+<header>
+<b>P01 / VISUAL LAB</b>
+<select id="sample" aria-label="样例"><option>demo-4seat</option></select>
+<button data-phase="aim">瞄准</button><button data-effect="fire">发射</button><button data-effect="bounce">反弹</button><button data-effect="dig">钻地</button><button data-effect="explode">爆炸</button><button data-phase="water">涨水</button><button data-effect="death">死亡</button><button data-phase="final">终局</button>
+<button id="verify">确定性自测</button><button id="benchmark">绘制基准</button><button id="capture">保存 PNG</button>
+<output id="status">正在载入真实核心与视觉层…</output>
+</header>
+<iframe id="viewer" title="真实观战器视觉预览"></iframe>
+<script type="module">
+const viewer = document.getElementById('viewer'), status = document.getElementById('status');
+let api;
+function load() { api = null; viewer.src = `../../index.html?trace=${encodeURIComponent('/traces/samples/' + document.getElementById('sample').value + '.json')}&autoplay=0&camera=full&muted=1`; }
+viewer.addEventListener('load', async () => {
+  try { api = viewer.contentWindow.__P01V__; if (!api) throw new Error('核心 API 未加载'); await api.ready;
+    if (!api.getFrameCount()) throw new Error('trace 未加载，请先启动项目 server/app.py');
+    status.textContent = `${api.getFrameCount()} 帧 / ${viewer.contentWindow.P01.visual.name}`;
+  } catch (error) { status.textContent = error.message; }
+});
+document.getElementById('sample').addEventListener('change', load);
+document.querySelectorAll('[data-phase],[data-effect]').forEach(button => button.addEventListener('click', () => {
+  if (!api) return;
+  const f = api.timeline.frames.find(f => button.dataset.phase ? f.phase === button.dataset.phase : f.effects.some(e => e.type === button.dataset.effect));
+  if (!f) { status.textContent = '此样例无对应事件'; return; }
+  api.seekFrame(f.index + (button.dataset.effect === 'explode' ? 4 : 0)); status.textContent = `F${f.index} / ${f.phase}`;
+}));
+document.getElementById('verify').addEventListener('click', () => {
+  if (!api?.timeline) return;
+  try {
+    api.pause(); api.setCamera('full');
+    const frames = api.timeline.frames, types = ['fire','explode','bounce','dig','hurt','death','drown','win'];
+    const probes = [0, ...types.map(type => frames.find(f => f.effects.some(e => e.type === type))?.index).filter(n => n !== undefined), frames.length - 1];
+    for (const index of probes) {
+      const n = Math.min(index + 4, frames.length - 1);
+      api.seekFrame(n); const first = api.capture(), hud = viewer.contentDocument.getElementById('hud-seats').textContent;
+      api.seekFrame(0); api.seekFrame(frames.length - 1); api.seekFrame(n);
+      if (api.capture() !== first) throw new Error(`F${n} 重复 seek 像素不同`);
+      if (viewer.contentDocument.getElementById('hud-seats').textContent !== hud) throw new Error(`F${n} HUD 不同`);
+      for (let i = Math.max(0, n - 90); i <= n; i++) api.renderFrame(i);
+      if (api.capture() !== first) throw new Error(`F${n} 顺序绘制与 seek 不同`);
+    }
+    status.textContent = `PASS · ${probes.length} 个探针：PNG / HUD / 顺序绘制与 seek 一致`;
+  } catch (error) { status.textContent = `FAIL · ${error.message}`; }
+});
+document.getElementById('benchmark').addEventListener('click', () => {
+  if (!api?.timeline) return;
+  api.pause(); api.setCamera('full');
+  const frames = api.timeline.frames, begin = performance.now(), n = Math.min(600, frames.length);
+  for (let i = 0; i < n; i++) api.renderFrame(i);
+  const ms = performance.now() - begin;
+  status.textContent = `${n} 帧 / ${ms.toFixed(1)}ms / ${(n * 1000 / ms).toFixed(1)} 绘制帧/秒（非 1080p 播放 FPS）`;
+});
+document.getElementById('capture').addEventListener('click', () => {
+  if (!api?.getFrameCount()) return;
+  const link = document.createElement('a'); link.download = `p01-visual-${api.getFrameInfo().frame}.png`; link.href = api.capture(); link.click();
+});
+load();
+</script>
+</html>

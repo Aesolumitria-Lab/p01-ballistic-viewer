@@ -1,0 +1,24 @@
+# build outputs
+*.exe
+*.o
+*.obj
+server/trace_engine/engine_trace
+__pycache__/
+*.pyc
+
+# runtime output
+server/cache/
+server/traces/
+traces/.events/
+traces/.replays/
+traces/.verify/
+*.log
+
+# a local copy of the P01 package, if you unpack one here
+/game/
+
+# editor / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
