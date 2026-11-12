@@ -28,7 +28,7 @@ http://127.0.0.1:8765/?trace=/traces/samples/demo-4seat.json
 
 ### 2. 配置题目包，跑新对局
 
-跑新对局需要另外取得 P01 题目包（p01-ballistic 选手包）。解压后其目录下应有 `public/maps4`、`public/baselines/bin` 等。用环境变量或命令行参数把它指给程序。
+跑新对局需要另外取得 P01 题目包（p01-ballistic 选手包）：它在 [Aesolumitria-ai-arena](https://github.com/Aesolumitria-Lab/Aesolumitria-ai-arena) 仓库的 `packages/p01-ballistic/` 目录下。解压后其目录下应有 `public/maps4`、`public/baselines/bin` 等。用环境变量或命令行参数把它指给程序。
 
 命令行参数：
 

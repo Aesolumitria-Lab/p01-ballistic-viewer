@@ -5,6 +5,7 @@ This product is licensed under the Apache License, Version 2.0.
 See LICENSE for the full license text.
 
 This product includes software derived from Aesolumitria-ai-arena
+(https://github.com/Aesolumitria-Lab/Aesolumitria-ai-arena)
 (Copyright 2026 Aesolumitria-Lab, Apache License 2.0):
 
 - server/trace_engine/engine_trace.cpp is a modified copy of
